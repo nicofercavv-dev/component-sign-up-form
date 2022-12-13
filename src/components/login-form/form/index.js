@@ -1,5 +1,8 @@
 import { useState } from "react";
 import Forms from "./styled";
+import Input from "../components/Input";
+
+let registers = []; 
 
 const FormInputs = () => {
   const [data, setData] = useState({
@@ -11,66 +14,59 @@ const FormInputs = () => {
 
   const getFormData = (e) => {
     const { name, value } = e.target;
-    const regx = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/i;
-    try {
-      if (name === "email" && regx.test(value) === true) {
-        setData({
-          ...data,
-          [name]: value,
-        });
-      }
-    } catch (e) {
-      console.log('arruma isso ai');
-    }
     setData({
       ...data,
       [name]: value,
     });
+    console.log(data)
   };
 
   const sendFormData = (data) => {
     if (!data.firstName || !data.lastName || !data.email || !data.password) {
+      alert("Preencha o formulário!")
     }
+    registers.push(data)
   };
 
   return (
     <Forms method="post">
-      <input
+      <Input
         type={"text"}
         name={"firstName"}
-        placeholder={"First Name"}
         onChange={(item) => {
           getFormData(item);
         }}
+        data={data}
       />
-      <input
+      <Input
         type={"text"}
         name={"lastName"}
-        placeholder={"Last Name"}
         onChange={(item) => {
           getFormData(item);
         }}
+        data={data}
       />
-      <input
+      <Input
         type={"email"}
         name={"email"}
-        placeholder={"Email Address"}
         onChange={(item) => {
           getFormData(item);
         }}
+        data={data}
       />
-      <input
+      <Input
         type={"password"}
         name={"password"}
-        placeholder={"Password"}
         onChange={(item) => {
           getFormData(item);
         }}
+        data={data}
       />
       <button
         className="submit"
         onClick={() => {
-          sendFormData(data);
+          sendFormData(data)
+          console.log(registers)
         }}
       >
         <b>CLAIM YOUR FREE TRIAL</b>
