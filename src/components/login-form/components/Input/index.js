@@ -1,18 +1,42 @@
-import Message from "../Message/styled"
-const Input = ({ type, name, onChange, data }) => {
-    const placeholder = {
-        "firstName": "First Name",
-        "lastName": "Last Name",
-        "email": "Email Address",
-        "password": "Password"
-    }
+import React from 'react'
+import Message from '../Message/styled'
+import PropTypes from 'prop-types'
 
-    return (
-        <>
-            <input type={type} name={name} placeholder={placeholder[name]} onChange={onChange}/>
-            <Message>{data[name] ? null : `${placeholder[name]} cannot be empty`}</Message>
-        </>
-    )
+const Input = ({
+  id,
+  type,
+  onChange,
+  onBlur,
+  value,
+  placeholder,
+  error
+}) => {
+  return (
+    <>
+      <div>
+        <input
+          id={id}
+          type={type}
+          name={id}
+          onChange={onChange}
+          onBlur={onBlur}
+          value={value}
+          placeholder={placeholder}
+        />
+      </div>
+      {error && <Message>{error}</Message>}
+    </>
+  )
 }
 
 export default Input
+
+Input.propTypes = {
+  id: PropTypes.string,
+  type: PropTypes.string,
+  onChange: PropTypes.func,
+  onBlur: PropTypes.func,
+  value: PropTypes.string,
+  placeholder: PropTypes.string,
+  error: PropTypes.string
+}

@@ -1,85 +1,86 @@
-import { useState } from "react";
-import Forms from "./styled";
-import Input from "../components/Input";
+import React, { useState } from 'react'
+import Forms from './styled'
+import Input from '../components/Input'
+import useForm from '../../hooks/useForm'
 
-let registers = []; 
+const registers = []
 
 const FormInputs = () => {
+  const firstName = useForm('firstName')
+  const lastName = useForm('lastName')
+  const email = useForm('email')
+  const password = useForm('password')
   const [data, setData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-  });
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: ''
+  })
 
-  const getFormData = (e) => {
-    const { name, value } = e.target;
-    setData({
-      ...data,
-      [name]: value,
-    });
-    console.log(data)
-  };
+  // const getFormData = (e) => {
+  //   const { name, value } = e.target
+  //   setData({
+  //     ...data,
+  //     [name]: value
+  //   })
+  // }
 
-  const sendFormData = (data) => {
-    if (!data.firstName || !data.lastName || !data.email || !data.password) {
-      alert("Preencha o formulário!")
-    }
+  const handleSubmit = (event) => {
+    event.preventDefault()
     registers.push(data)
-  };
+    console.log(registers)
+    setData({
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: ''
+    })
+  }
 
   return (
-    <Forms method="post">
+    <Forms onSubmit={handleSubmit}>
       <Input
-        type={"text"}
-        name={"firstName"}
-        onChange={(item) => {
-          getFormData(item);
-        }}
-        data={data}
+        id={'firstName'}
+        type={'text'}
+        placeholder={'First Name'}
+        {...firstName}
+      />
+      {/* {console.log(firstName)} */}
+      <Input
+        id={'lastName'}
+        type={'text'}
+        placeholder={'Last Name'}
+        {...lastName}
+      />
+      {console.log(lastName)}
+      <Input
+        id={'email'}
+        type={'email'}
+        placeholder={'Email'}
+        {...email}
       />
       <Input
-        type={"text"}
-        name={"lastName"}
-        onChange={(item) => {
-          getFormData(item);
-        }}
-        data={data}
-      />
-      <Input
-        type={"email"}
-        name={"email"}
-        onChange={(item) => {
-          getFormData(item);
-        }}
-        data={data}
-      />
-      <Input
-        type={"password"}
-        name={"password"}
-        onChange={(item) => {
-          getFormData(item);
-        }}
-        data={data}
+        id={'password'}
+        type={'password'}
+        placeholder={'Password'}
+        {...password}
       />
       <button
         className="submit"
         onClick={() => {
-          sendFormData(data)
-          console.log(registers)
+          console.log('Enviado')
         }}
       >
         <b>CLAIM YOUR FREE TRIAL</b>
       </button>
       <p>
         By clicking the button, you are agreeing to our
-        <a href="https://www.github.com/nicofercavv-dev">
-          {" "}
-          <b>Terms and Services</b>
+        <a href="https://www.github.com/nicofercavv-dev" target={'_blank'} rel="noreferrer">
+          <b> Terms and Services</b>
         </a>
       </p>
     </Forms>
-  );
-};
+  )
+}
 
-export default FormInputs;
+export default FormInputs
