@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Forms from './styled'
 import Input from '../components/Input'
-import useForm from '../../hooks/useForm'
+import useForm from '../../../hooks/useForm'
 
 const registers = []
 
@@ -45,20 +45,19 @@ const FormInputs = () => {
         placeholder={'First Name'}
         {...firstName}
       />
-      {/* {console.log(firstName)} */}
       <Input
         id={'lastName'}
         type={'text'}
         placeholder={'Last Name'}
         {...lastName}
       />
-      {console.log(lastName)}
       <Input
         id={'email'}
         type={'email'}
         placeholder={'Email'}
         {...email}
       />
+      {console.log(email)}
       <Input
         id={'password'}
         type={'password'}

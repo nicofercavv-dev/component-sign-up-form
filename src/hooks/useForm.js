@@ -2,11 +2,11 @@ import { useState } from 'react'
 
 const types = {
   firstName: {
-    regex: /^[a-zA-Z].$/gm,
+    regex: /[a-zA-Z].{0,}/g,
     message: 'First Name cannot be empty'
   },
   lastName: {
-    regex: /^[a-zA-Z].$/gm,
+    regex: /[a-zA-Z].{0,}/g,
     message: 'Last Name cannot be empty'
   },
   email: {
@@ -14,7 +14,7 @@ const types = {
     message: 'Looks like this is not an email'
   },
   password: {
-    regex: /^[a-zA-Z0-9#?!@$%^&*-]{1,}$/gm,
+    regex: /[a-zA-Z0-9]/gm,
     message: 'Password cannot be empty'
   }
 }
@@ -34,7 +34,9 @@ const useForm = (type) => {
   }
 
   function onChange ({ target }) {
-    if (error) validate(target.value)
+    if (error) {
+      validate(target.value)
+    }
     setValue(target.value)
   }
 

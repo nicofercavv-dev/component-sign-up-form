@@ -1,6 +1,8 @@
 import React from 'react'
 import Message from '../Message/styled'
+import InputContainer from './styled'
 import PropTypes from 'prop-types'
+import svg from './icon-error.svg'
 
 const Input = ({
   id,
@@ -13,7 +15,7 @@ const Input = ({
 }) => {
   return (
     <>
-      <div>
+      <InputContainer error={error}>
         <input
           id={id}
           type={type}
@@ -23,7 +25,8 @@ const Input = ({
           value={value}
           placeholder={placeholder}
         />
-      </div>
+        <img src={svg} />
+      </InputContainer>
       {error && <Message>{error}</Message>}
     </>
   )

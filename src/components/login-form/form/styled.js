@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 const Forms = styled.form`
     background-color: white;
-    height: 58%;
+    height: 60%;
     width: 63%;
     display: flex;
     flex-direction: column;
@@ -11,17 +11,6 @@ const Forms = styled.form`
     padding: 20px;
     border-radius: 10px;
 
-    input {
-        border: 1px solid hsl(246, 25%, 92%);
-        border-radius: 4px;
-        padding: 0px 10px;
-        width: 90%;
-        height: 12%;
-
-        &:focus {
-            border: 1px solid hsl(249, 10%, 26%);
-        }
-    }
     .submit {
         background-color: hsl(154, 59%, 51%);
         width: 95%;
@@ -32,6 +21,7 @@ const Forms = styled.form`
 
         &:hover {
             cursor: pointer;
+            background-color: hsl(154, 59%, 60%);
         }
     }
     p {
